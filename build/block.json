@@ -1,0 +1,80 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "create-block/sk-image-carousel",
+  "version": "0.1.0",
+  "title": "Sk Image Carousel",
+  "category": "media",
+  "icon": "format-gallery",
+  "description": "This is dynamic image carousel with text.",
+  "attributes": {
+    "sliders": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "image": {
+            "type": "string"
+          },
+          "heading": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "buttonText": {
+            "type": "string"
+          },
+          "buttonUrl": {
+            "type": "string"
+          },
+          "headingTextColor": {
+            "type": "string",
+            "default": "#000"
+          },
+          "headingBackgroundColor": {
+            "type": "string",
+            "default": "#fff"
+          },
+          "headingFontSize": {
+            "type": "number",
+            "default": 24
+          },
+          "descriptionTextColor": {
+            "type": "string",
+            "default": "#000"
+          },
+          "descriptionBackgroundColor": {
+            "type": "string",
+            "default": "#fff"
+          },
+          "descriptionFontSize": {
+            "type": "number",
+            "default": 16
+          },
+          "buttonTextColor": {
+            "type": "string",
+            "default": "#fff"
+          },
+          "buttonBackgroundColor": {
+            "type": "string",
+            "default": "#0073aa"
+          },
+          "buttonFontSize": {
+            "type": "number",
+            "default": 16
+          }
+        }
+      }
+    }
+  },
+  "supports": {
+    "align": true
+  },
+  "textdomain": "sk-image-carousel",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}
