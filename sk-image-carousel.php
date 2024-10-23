@@ -29,7 +29,8 @@ add_action( 'init', 'create_block_sk_image_carousel_block_init' );
 function render_image_carousel_block( $attributes ) {
 	ob_start();
 
-	$sliders = isset($attributes['sliders']) ? $attributes['sliders'] : [];
+	$sliders = isset( $attributes['sliders'] ) ? $attributes['sliders'] : [];
+	print_r($sliders);
 	?>
 	<div class="swiper mySwiper">
 		<?php if ( ! empty( $sliders ) && is_array( $sliders ) ) : ?>
@@ -37,20 +38,48 @@ function render_image_carousel_block( $attributes ) {
 				<?php foreach ( $sliders as $slider ) : ?>
 					<div class="swiper-slide">
 						<?php if ( ! empty( $slider['image'] ) ) : ?>
-							<img src="<?php echo esc_url( $slider['image'] ); ?>" alt="<?php echo esc_attr( $slider['heading'] ?? 'Slide' ); ?>" style="max-width: 100%;">
-						<?php endif; ?>
-						<?php if ( ! empty( $slider['heading'] ) ) : ?>
-							<h2 style="color: <?php echo esc_attr( $slider['headingTextColor'] ); ?>; background-color: <?php echo esc_attr( $slider['headingBackgroundColor'] ); ?>; font-size: <?php echo esc_attr( $slider['headingFontSize'] ); ?>px;"><?php echo esc_html( $slider['heading'] ); ?></h2>
-						<?php endif; ?>
-						<?php if ( ! empty( $slider['description'] ) ) : ?>
-							<p style="color: <?php echo esc_attr( $slider['descriptionTextColor'] ); ?>; background-color: <?php echo esc_attr( $slider['descriptionBackgroundColor'] ); ?>; font-size: <?php echo esc_attr( $slider['descriptionFontSize'] ); ?>px;"><?php echo esc_html( $slider['description'] ); ?></p>
-						<?php endif; ?>
-						<?php if ( ! empty( $slider['buttonText'] ) && ! empty( $slider['buttonUrl'] ) ) : ?>
-							<a href="<?php echo esc_url( $slider['buttonUrl'] ); ?>" style="color: <?php echo esc_attr( $slider['buttonTextColor'] ); ?>; background-color: <?php echo esc_attr( $slider['buttonBackgroundColor'] ); ?>; font-size: <?php echo esc_attr( $slider['buttonFontSize'] ); ?>px;"><?php echo esc_html( $slider['buttonText'] ); ?></a>
-						<?php endif; ?>
-					</div>
+						<div class="slider-container"
+							 style="background-image: url(<?php echo esc_url( $slider['image'] ); ?>);
+								 height: 600px;
+								 display: flex;
+								 align-items: <?php echo esc_attr( $slider['verticalAlign'] ); ?>;
+								 justify-content: <?php echo esc_attr( $slider['horizontalAlign'] ); ?>;">
+							<?php endif; ?>
+
+							<div class="slider-text-container">
+								<?php if ( ! empty( $slider['heading'] ) ) : ?>
+									<h2 style="color: <?php echo esc_attr( $slider['headingTextColor'] ); ?>;
+										background-color: <?php echo esc_attr( $slider['headingBackgroundColor'] ); ?>;
+										font-size: <?php echo esc_attr( $slider['headingFontSize'] ); ?>px;">
+										<?php echo esc_html( $slider['heading'] ); ?>
+									</h2>
+								<?php endif; ?>
+
+								<?php if ( ! empty( $slider['description'] ) ) : ?>
+									<p style="color: <?php echo esc_attr( $slider['descriptionTextColor'] ); ?>;
+										background-color: <?php echo esc_attr( $slider['descriptionBackgroundColor'] ); ?>;
+										font-size: <?php echo esc_attr( $slider['descriptionFontSize'] ); ?>px;">
+										<?php echo esc_html( $slider['description'] ); ?>
+									</p>
+								<?php endif; ?>
+
+								<?php if ( ! empty( $slider['buttonText'] ) && ! empty( $slider['buttonUrl'] ) ) : ?>
+									<a href="<?php echo esc_url( $slider['buttonUrl'] ); ?>"
+									   style="color: <?php echo esc_attr( $slider['buttonTextColor'] ); ?>;
+										   background-color: <?php echo esc_attr( $slider['buttonBackgroundColor'] ); ?>;
+										   font-size: <?php echo esc_attr( $slider['buttonFontSize'] ); ?>px;">
+										<?php echo esc_html( $slider['buttonText'] ); ?>
+									</a>
+								<?php endif; ?>
+							</div>
+
+							<?php if ( ! empty( $slider['image'] ) ) : ?>
+						</div> <!-- End of .slider-container -->
+					<?php endif; ?>
+					</div> <!-- End of .swiper-slide -->
 				<?php endforeach; ?>
-			</div>
+			</div> <!-- End of .swiper-wrapper -->
+
 			<div class="swiper-pagination"></div>
 			<div class="swiper-button-next"></div>
 			<div class="swiper-button-prev"></div>
@@ -91,7 +120,7 @@ function render_image_carousel_block_editor_assets() {
 
 	// Enqueue Swiper styles
 	wp_enqueue_style('swiper-css', plugin_dir_url(__FILE__).'src/sweeper/sp.css', array(), null);
-	wp_enqueue_style('sk-image-carousel', plugin_dir_url(__FILE__) . 'build/index.css', array(), $asset['version'], 'all');
+	wp_enqueue_style('image-custom-css', plugin_dir_url(__FILE__) . 'build/index.css', array(), $asset['version'], 'all');
 	// Enqueue Swiper script
 	wp_enqueue_script('swiper-js', plugin_dir_url(__FILE__).'src/sweeper/sp.js'  , array('jquery'), null, true);
 

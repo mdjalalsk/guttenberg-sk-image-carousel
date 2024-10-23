@@ -1,9 +1,8 @@
-import { __ } from '@wordpress/i18n';
-import { useBlockProps, InspectorControls, MediaUpload } from '@wordpress/block-editor';
-import { Button, PanelBody, ColorPalette, FontSizePicker, TextControl } from '@wordpress/components';
-import { Fragment } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import React, { useEffect, useRef } from 'react';
+import {__} from '@wordpress/i18n';
+import {InspectorControls, MediaUpload, useBlockProps} from '@wordpress/block-editor';
+import {Button, ColorPalette, FontSizePicker, PanelBody, SelectControl, TextControl,Text} from '@wordpress/components';
+import React, {Fragment, useEffect, useRef} from 'react';
+import {Swiper, SwiperSlide} from 'swiper/react';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -11,10 +10,10 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import './style.scss';
 // Import required modules
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import {Autoplay, Navigation, Pagination} from 'swiper/modules';
 
-export default function Edit({ attributes, setAttributes }) {
-	const { sliders = [] } = attributes;
+export default function Edit({attributes, setAttributes}) {
+	const {sliders = []} = attributes;
 
 	const addNewSlider = () => {
 		const newSliders = [...sliders, {
@@ -32,19 +31,22 @@ export default function Edit({ attributes, setAttributes }) {
 			buttonTextColor: '#fff',
 			buttonBackgroundColor: '#0073aa',
 			buttonFontSize: 16,
+			verticalAlign: 'center',
+			horizontalAlign: 'center'
+
 		}];
-		setAttributes({ sliders: newSliders });
+		setAttributes({sliders: newSliders});
 	};
 
 	const updateSlider = (index, attribute, value) => {
 		const newSliders = [...sliders];
 		newSliders[index][attribute] = value;
-		setAttributes({ sliders: newSliders });
+		setAttributes({sliders: newSliders});
 	};
 
 	const removeSlider = (index) => {
 		const newSliders = sliders.filter((_, i) => i !== index);
-		setAttributes({ sliders: newSliders });
+		setAttributes({sliders: newSliders});
 	};
 	const swiperRef = useRef(null);
 
@@ -62,13 +64,16 @@ export default function Edit({ attributes, setAttributes }) {
 							<MediaUpload
 								onSelect={(media) => updateSlider(index, 'image', media.url)}
 								allowedTypes={['image']}
-								render={({ open }) => (
+								render={({open}) => (
 									<>
 										{slider.image ? (
 											<>
-												<img src={slider.image} alt={__('Selected Image', 'sk-image-carousel')} style={{ width: '100%', height: 'auto', marginBottom: '10px' }} />
-												<Button isSecondary onClick={open}>{__('Change Image', 'sk-image-carousel')}</Button>
-												<Button isDestructive onClick={() => updateSlider(index, 'image', '')} style={{ marginTop: '10px' }}>{__('Remove Image', 'sk-image-carousel')}</Button>
+												<img src={slider.image} alt={__('Selected Image', 'sk-image-carousel')}
+													 style={{width: '100%', height: 'auto', marginBottom: '10px'}}/>
+												<Button isSecondary
+														onClick={open}>{__('Change Image', 'sk-image-carousel')}</Button>
+												<Button isDestructive onClick={() => updateSlider(index, 'image', '')}
+														style={{marginTop: '10px'}}>{__('Remove Image', 'sk-image-carousel')}</Button>
 											</>
 										) : (
 											<Button onClick={open}>{__('Select Image', 'sk-image-carousel')}</Button>
@@ -76,72 +81,102 @@ export default function Edit({ attributes, setAttributes }) {
 									</>
 								)}
 							/>
-							<TextControl
-								label={__('Heading', 'sk-image-carousel')}
-								value={slider.heading}
-								onChange={(value) => updateSlider(index, 'heading', value)}
-							/>
-							<ColorPalette
-								value={slider.headingTextColor}
-								onChange={(newColor) => updateSlider(index, 'headingTextColor', newColor)}
-								label={__('Heading Text Color', 'sk-image-carousel')}
-							/>
-							<ColorPalette
-								value={slider.headingBackgroundColor}
-								onChange={(newColor) => updateSlider(index, 'headingBackgroundColor', newColor)}
-								label={__('Heading Background Color', 'sk-image-carousel')}
-							/>
-							<FontSizePicker
-								value={slider.headingFontSize}
-								onChange={(newSize) => updateSlider(index, 'headingFontSize', newSize)}
-								label={__('Heading Font Size', 'sk-image-carousel')}
+							<PanelBody title="Carousel Heading">
+
+								<TextControl
+									label={__('Heading', 'sk-image-carousel')}
+									value={slider.heading}
+									onChange={(value) => updateSlider(index, 'heading', value)}
+								/>
+								<ColorPalette
+									label={__('Heading Text Color', 'sk-image-carousel')}
+									value={slider.headingTextColor}
+									onChange={(newColor) => updateSlider(index, 'headingTextColor', newColor)}
+								/>
+								<ColorPalette
+									label={__('Heading Background Color', 'sk-image-carousel')}
+									value={slider.headingBackgroundColor}
+									onChange={(newColor) => updateSlider(index, 'headingBackgroundColor', newColor)}
+								/>
+								<FontSizePicker
+									value={slider.headingFontSize}
+									onChange={(newSize) => updateSlider(index, 'headingFontSize', newSize)}
+									label={__('Heading Font Size', 'sk-image-carousel')}
+								/>
+							</PanelBody>
+							<PanelBody title=" Carousel Description">
+
+								<TextControl
+									label={__('Description', 'sk-image-carousel')}
+									value={slider.description}
+									onChange={(value) => updateSlider(index, 'description', value)}
+								/>
+								<ColorPalette
+									label={__('Description Text Color', 'sk-image-carousel')}
+									value={slider.descriptionTextColor}
+									onChange={(newColor) => updateSlider(index, 'descriptionTextColor', newColor)}
+								/>
+								<ColorPalette
+									label={__('Description Background Color', 'sk-image-carousel')}
+									value={slider.descriptionBackgroundColor}
+									onChange={(newColor) => updateSlider(index, 'descriptionBackgroundColor', newColor)}
+								/>
+								<FontSizePicker
+									value={slider.descriptionFontSize}
+									onChange={(newSize) => updateSlider(index, 'descriptionFontSize', newSize)}
+									label={__('Description Font Size', 'sk-image-carousel')}
+								/>
+							</PanelBody>
+							<PanelBody title="Carousel Button">
+
+								<TextControl
+									label={__('Button Text', 'sk-image-carousel')}
+									value={slider.buttonText}
+									onChange={(value) => updateSlider(index, 'buttonText', value)}
+								/>
+								<TextControl
+									label={__('Button URL', 'sk-image-carousel')}
+									value={slider.buttonUrl}
+									onChange={(value) => updateSlider(index, 'buttonUrl', value)}
+								/>
+								<ColorPalette
+									label={__('Button Text Color', 'sk-image-carousel')}
+
+									value={slider.buttonTextColor}
+									onChange={(newColor) => updateSlider(index, 'buttonTextColor', newColor)}
+								/>
+								<ColorPalette
+									label={__('Button Background Color', 'sk-image-carousel')}
+									value={slider.buttonBackgroundColor}
+									onChange={(newColor) => updateSlider(index, 'buttonBackgroundColor', newColor)}
+								/>
+								<FontSizePicker
+									value={slider.buttonFontSize}
+									onChange={(newSize) => updateSlider(index, 'buttonFontSize', newSize)}
+									label={__('Button Font Size', 'sk-image-carousel')}
+								/>
+							</PanelBody>
+
+							<SelectControl
+								label={__('Vertical Align', 'sk-image-carousel')}
+								value={slider.verticalAlign}
+								options={[
+									{label: 'Top', value: 'flex-start'},
+									{label: 'Center', value: 'center'},
+									{label: 'Bottom', value: 'flex-end'}
+								]}
+								onChange={(newAlign) => updateSlider(index, 'verticalAlign', newAlign)}
 							/>
 
-							<TextControl
-								label={__('Description', 'sk-image-carousel')}
-								value={slider.description}
-								onChange={(value) => updateSlider(index, 'description', value)}
-							/>
-							<ColorPalette
-								value={slider.descriptionTextColor}
-								onChange={(newColor) => updateSlider(index, 'descriptionTextColor', newColor)}
-								label={__('Description Text Color', 'sk-image-carousel')}
-							/>
-							<ColorPalette
-								value={slider.descriptionBackgroundColor}
-								onChange={(newColor) => updateSlider(index, 'descriptionBackgroundColor', newColor)}
-								label={__('Description Background Color', 'sk-image-carousel')}
-							/>
-							<FontSizePicker
-								value={slider.descriptionFontSize}
-								onChange={(newSize) => updateSlider(index, 'descriptionFontSize', newSize)}
-								label={__('Description Font Size', 'sk-image-carousel')}
-							/>
-
-							<TextControl
-								label={__('Button Text', 'sk-image-carousel')}
-								value={slider.buttonText}
-								onChange={(value) => updateSlider(index, 'buttonText', value)}
-							/>
-							<TextControl
-								label={__('Button URL', 'sk-image-carousel')}
-								value={slider.buttonUrl}
-								onChange={(value) => updateSlider(index, 'buttonUrl', value)}
-							/>
-							<ColorPalette
-								value={slider.buttonTextColor}
-								onChange={(newColor) => updateSlider(index, 'buttonTextColor', newColor)}
-								label={__('Button Text Color', 'sk-image-carousel')}
-							/>
-							<ColorPalette
-								value={slider.buttonBackgroundColor}
-								onChange={(newColor) => updateSlider(index, 'buttonBackgroundColor', newColor)}
-								label={__('Button Background Color', 'sk-image-carousel')}
-							/>
-							<FontSizePicker
-								value={slider.buttonFontSize}
-								onChange={(newSize) => updateSlider(index, 'buttonFontSize', newSize)}
-								label={__('Button Font Size', 'sk-image-carousel')}
+							<SelectControl
+								label={__('Horizontal Align', 'sk-image-carousel')}
+								value={slider.horizontalAlign}
+								options={[
+									{label: 'Left', value: 'flex-start'},
+									{label: 'Center', value: 'center'},
+									{label: 'Right', value: 'flex-end'}
+								]}
+								onChange={(newAlign) => updateSlider(index, 'horizontalAlign', newAlign)}
 							/>
 
 							<Button isDestructive onClick={() => removeSlider(index)}>
@@ -153,6 +188,7 @@ export default function Edit({ attributes, setAttributes }) {
 						{__('Add New Slider', 'sk-image-carousel')}
 					</Button>
 				</PanelBody>
+
 			</InspectorControls>
 
 			{/* Preview inside block editor */}
@@ -164,7 +200,7 @@ export default function Edit({ attributes, setAttributes }) {
 						spaceBetween={30}
 						centeredSlides={true}
 						autoplay={{
-							delay: 2500,
+							delay: 5000,
 							disableOnInteraction: false,
 						}}
 						pagination={{
@@ -176,39 +212,48 @@ export default function Edit({ attributes, setAttributes }) {
 					>
 						{sliders.map((slider, index) => (
 							<SwiperSlide key={index}>
-								{slider.image && (
-									<img src={slider.image} alt={`Slide ${index + 1}`} style={{ maxWidth: '100%' }} />
-								)}
-								{slider.heading && (
-									<h2 style={{
-										color: slider.headingTextColor,
-										backgroundColor: slider.headingBackgroundColor,
-										fontSize: `${slider.headingFontSize}px`,
-									}}>
-										{slider.heading}
-									</h2>
-								)}
-								{slider.description && (
-									<p style={{
-										color: slider.descriptionTextColor,
-										backgroundColor: slider.descriptionBackgroundColor,
-										fontSize: `${slider.descriptionFontSize}px`,
-									}}>
-										{slider.description}
-									</p>
-								)}
-								{slider.buttonText && (
-									<a href={slider.buttonUrl} style={{
-										color: slider.buttonTextColor,
-										backgroundColor: slider.buttonBackgroundColor,
-										fontSize: `${slider.buttonFontSize}px`,
-										display: 'inline-block',
-										padding: '10px 20px',
-										marginTop: '10px',
-									}}>
-										{slider.buttonText}
-									</a>
-								)}
+								<div className="slider-container"
+									 style={{
+										 backgroundImage: `url(${slider.image})`,
+										 height: '600px',
+										 alignItems: slider.verticalAlign,
+										 justifyContent: slider.horizontalAlign,
+									 }}
+								>
+									<div className="slider-text-container">
+
+										{slider.heading && (
+											<h2 style={{
+												color: slider.headingTextColor,
+												backgroundColor: slider.headingBackgroundColor,
+												fontSize: `${slider.headingFontSize}px`,
+											}}>
+												{slider.heading}
+											</h2>
+										)}
+										{slider.description && (
+											<p style={{
+												color: slider.descriptionTextColor,
+												backgroundColor: slider.descriptionBackgroundColor,
+												fontSize: `${slider.descriptionFontSize}px`,
+											}}>
+												{slider.description}
+											</p>
+										)}
+										{slider.buttonText && (
+											<a href={slider.buttonUrl} style={{
+												color: slider.buttonTextColor,
+												backgroundColor: slider.buttonBackgroundColor,
+												fontSize: `${slider.buttonFontSize}px`,
+												display: 'inline-block',
+												padding: '10px 20px',
+												marginTop: '10px',
+											}}>
+												{slider.buttonText}
+											</a>
+										)}
+									</div>
+								</div>
 							</SwiperSlide>
 						))}
 					</Swiper>

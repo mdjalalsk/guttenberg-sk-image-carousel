@@ -27,7 +27,9 @@
 					"descriptionFontSize": { "type": "number", "default": 16 },
 					"buttonTextColor": { "type": "string", "default": "#fff" },
 					"buttonBackgroundColor": { "type": "string", "default": "#0073aa" },
-					"buttonFontSize": { "type": "number", "default": 16 }
+					"buttonFontSize": { "type": "number", "default": 16 },
+					"verticalAlign": { "type": "string", "default": "center" },
+					"horizontalAlign": { "type": "string", "default": "center" }
 				}
 			}
 		}

@@ -33,7 +33,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 // Import Swiper styles
 
 
@@ -63,7 +62,9 @@ function Edit({
       descriptionFontSize: 16,
       buttonTextColor: '#fff',
       buttonBackgroundColor: '#0073aa',
-      buttonFontSize: 16
+      buttonFontSize: 16,
+      verticalAlign: 'center',
+      horizontalAlign: 'center'
     }];
     setAttributes({
       sliders: newSliders
@@ -118,39 +119,45 @@ function Edit({
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove Image', 'sk-image-carousel'))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
       onClick: open
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select Image', 'sk-image-carousel')))
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: "Carousel Heading"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Heading', 'sk-image-carousel'),
     value: slider.heading,
     onChange: value => updateSlider(index, 'heading', value)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Heading Text Color', 'sk-image-carousel'),
     value: slider.headingTextColor,
-    onChange: newColor => updateSlider(index, 'headingTextColor', newColor),
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Heading Text Color', 'sk-image-carousel')
+    onChange: newColor => updateSlider(index, 'headingTextColor', newColor)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Heading Background Color', 'sk-image-carousel'),
     value: slider.headingBackgroundColor,
-    onChange: newColor => updateSlider(index, 'headingBackgroundColor', newColor),
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Heading Background Color', 'sk-image-carousel')
+    onChange: newColor => updateSlider(index, 'headingBackgroundColor', newColor)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FontSizePicker, {
     value: slider.headingFontSize,
     onChange: newSize => updateSlider(index, 'headingFontSize', newSize),
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Heading Font Size', 'sk-image-carousel')
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: " Carousel Description"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Description', 'sk-image-carousel'),
     value: slider.description,
     onChange: value => updateSlider(index, 'description', value)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Description Text Color', 'sk-image-carousel'),
     value: slider.descriptionTextColor,
-    onChange: newColor => updateSlider(index, 'descriptionTextColor', newColor),
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Description Text Color', 'sk-image-carousel')
+    onChange: newColor => updateSlider(index, 'descriptionTextColor', newColor)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Description Background Color', 'sk-image-carousel'),
     value: slider.descriptionBackgroundColor,
-    onChange: newColor => updateSlider(index, 'descriptionBackgroundColor', newColor),
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Description Background Color', 'sk-image-carousel')
+    onChange: newColor => updateSlider(index, 'descriptionBackgroundColor', newColor)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FontSizePicker, {
     value: slider.descriptionFontSize,
     onChange: newSize => updateSlider(index, 'descriptionFontSize', newSize),
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Description Font Size', 'sk-image-carousel')
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: "Carousel Button"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button Text', 'sk-image-carousel'),
     value: slider.buttonText,
     onChange: value => updateSlider(index, 'buttonText', value)
@@ -159,17 +166,45 @@ function Edit({
     value: slider.buttonUrl,
     onChange: value => updateSlider(index, 'buttonUrl', value)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button Text Color', 'sk-image-carousel'),
     value: slider.buttonTextColor,
-    onChange: newColor => updateSlider(index, 'buttonTextColor', newColor),
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button Text Color', 'sk-image-carousel')
+    onChange: newColor => updateSlider(index, 'buttonTextColor', newColor)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ColorPalette, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button Background Color', 'sk-image-carousel'),
     value: slider.buttonBackgroundColor,
-    onChange: newColor => updateSlider(index, 'buttonBackgroundColor', newColor),
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button Background Color', 'sk-image-carousel')
+    onChange: newColor => updateSlider(index, 'buttonBackgroundColor', newColor)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.FontSizePicker, {
     value: slider.buttonFontSize,
     onChange: newSize => updateSlider(index, 'buttonFontSize', newSize),
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Button Font Size', 'sk-image-carousel')
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Vertical Align', 'sk-image-carousel'),
+    value: slider.verticalAlign,
+    options: [{
+      label: 'Top',
+      value: 'flex-start'
+    }, {
+      label: 'Center',
+      value: 'center'
+    }, {
+      label: 'Bottom',
+      value: 'flex-end'
+    }],
+    onChange: newAlign => updateSlider(index, 'verticalAlign', newAlign)
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Horizontal Align', 'sk-image-carousel'),
+    value: slider.horizontalAlign,
+    options: [{
+      label: 'Left',
+      value: 'flex-start'
+    }, {
+      label: 'Center',
+      value: 'center'
+    }, {
+      label: 'Right',
+      value: 'flex-end'
+    }],
+    onChange: newAlign => updateSlider(index, 'horizontalAlign', newAlign)
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     isDestructive: true,
     onClick: () => removeSlider(index)
@@ -183,7 +218,7 @@ function Edit({
     spaceBetween: 30,
     centeredSlides: true,
     autoplay: {
-      delay: 2500,
+      delay: 5000,
       disableOnInteraction: false
     },
     pagination: {
@@ -194,13 +229,17 @@ function Edit({
     className: "mySwiper"
   }, sliders.map((slider, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(swiper_react__WEBPACK_IMPORTED_MODULE_4__.SwiperSlide, {
     key: index
-  }, slider.image && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    src: slider.image,
-    alt: `Slide ${index + 1}`,
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "slider-container",
     style: {
-      maxWidth: '100%'
+      backgroundImage: `url(${slider.image})`,
+      height: '600px',
+      alignItems: slider.verticalAlign,
+      justifyContent: slider.horizontalAlign
     }
-  }), slider.heading && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "slider-text-container"
+  }, slider.heading && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", {
     style: {
       color: slider.headingTextColor,
       backgroundColor: slider.headingBackgroundColor,
@@ -222,7 +261,7 @@ function Edit({
       padding: '10px 20px',
       marginTop: '10px'
     }
-  }, slider.buttonText)))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "No sliders available.")));
+  }, slider.buttonText)))))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "No sliders available.")));
 }
 
 /***/ }),
@@ -11602,7 +11641,7 @@ SwiperSlide.displayName = 'SwiperSlide';
   \************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/sk-image-carousel","version":"0.1.0","title":"Sk Image Carousel","category":"media","icon":"format-gallery","description":"This is dynamic image carousel with text.","attributes":{"sliders":{"type":"array","default":[],"items":{"type":"object","properties":{"image":{"type":"string"},"heading":{"type":"string"},"description":{"type":"string"},"buttonText":{"type":"string"},"buttonUrl":{"type":"string"},"headingTextColor":{"type":"string","default":"#000"},"headingBackgroundColor":{"type":"string","default":"#fff"},"headingFontSize":{"type":"number","default":24},"descriptionTextColor":{"type":"string","default":"#000"},"descriptionBackgroundColor":{"type":"string","default":"#fff"},"descriptionFontSize":{"type":"number","default":16},"buttonTextColor":{"type":"string","default":"#fff"},"buttonBackgroundColor":{"type":"string","default":"#0073aa"},"buttonFontSize":{"type":"number","default":16}}}}},"supports":{"align":true},"textdomain":"sk-image-carousel","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"create-block/sk-image-carousel","version":"0.1.0","title":"Sk Image Carousel","category":"media","icon":"format-gallery","description":"This is dynamic image carousel with text.","attributes":{"sliders":{"type":"array","default":[],"items":{"type":"object","properties":{"image":{"type":"string"},"heading":{"type":"string"},"description":{"type":"string"},"buttonText":{"type":"string"},"buttonUrl":{"type":"string"},"headingTextColor":{"type":"string","default":"#000"},"headingBackgroundColor":{"type":"string","default":"#fff"},"headingFontSize":{"type":"number","default":24},"descriptionTextColor":{"type":"string","default":"#000"},"descriptionBackgroundColor":{"type":"string","default":"#fff"},"descriptionFontSize":{"type":"number","default":16},"buttonTextColor":{"type":"string","default":"#fff"},"buttonBackgroundColor":{"type":"string","default":"#0073aa"},"buttonFontSize":{"type":"number","default":16},"verticalAlign":{"type":"string","default":"center"},"horizontalAlign":{"type":"string","default":"center"}}}}},"supports":{"align":true},"textdomain":"sk-image-carousel","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ })
 
