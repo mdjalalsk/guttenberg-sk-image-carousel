@@ -1,6 +1,6 @@
 import {__} from '@wordpress/i18n';
 import {InspectorControls, MediaUpload, useBlockProps} from '@wordpress/block-editor';
-import {Button, ColorPalette, FontSizePicker, PanelBody, SelectControl, TextControl,Text} from '@wordpress/components';
+import {Button, ColorPalette, FontSizePicker, PanelBody, SelectControl, TextControl} from '@wordpress/components';
 import React, {Fragment, useEffect, useRef} from 'react';
 import {Swiper, SwiperSlide} from 'swiper/react';
 
@@ -8,7 +8,7 @@ import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import './style.scss';
+import './editor.scss';
 // Import required modules
 import {Autoplay, Navigation, Pagination} from 'swiper/modules';
 
@@ -156,28 +156,30 @@ export default function Edit({attributes, setAttributes}) {
 									label={__('Button Font Size', 'sk-image-carousel')}
 								/>
 							</PanelBody>
+							<PanelBody title="Carousel Text Position">
 
-							<SelectControl
-								label={__('Vertical Align', 'sk-image-carousel')}
-								value={slider.verticalAlign}
-								options={[
-									{label: 'Top', value: 'flex-start'},
-									{label: 'Center', value: 'center'},
-									{label: 'Bottom', value: 'flex-end'}
-								]}
-								onChange={(newAlign) => updateSlider(index, 'verticalAlign', newAlign)}
-							/>
+								<SelectControl
+									label={__('Vertical Align', 'sk-image-carousel')}
+									value={slider.verticalAlign}
+									options={[
+										{label: 'Top', value: 'flex-start'},
+										{label: 'Center', value: 'center'},
+										{label: 'Bottom', value: 'flex-end'}
+									]}
+									onChange={(newAlign) => updateSlider(index, 'verticalAlign', newAlign)}
+								/>
 
-							<SelectControl
-								label={__('Horizontal Align', 'sk-image-carousel')}
-								value={slider.horizontalAlign}
-								options={[
-									{label: 'Left', value: 'flex-start'},
-									{label: 'Center', value: 'center'},
-									{label: 'Right', value: 'flex-end'}
-								]}
-								onChange={(newAlign) => updateSlider(index, 'horizontalAlign', newAlign)}
-							/>
+								<SelectControl
+									label={__('Horizontal Align', 'sk-image-carousel')}
+									value={slider.horizontalAlign}
+									options={[
+										{label: 'Left', value: 'flex-start'},
+										{label: 'Center', value: 'center'},
+										{label: 'Right', value: 'flex-end'}
+									]}
+									onChange={(newAlign) => updateSlider(index, 'horizontalAlign', newAlign)}
+								/>
+							</PanelBody>
 
 							<Button isDestructive onClick={() => removeSlider(index)}>
 								{__('Remove Slider', 'sk-image-carousel')}
@@ -246,8 +248,9 @@ export default function Edit({attributes, setAttributes}) {
 												backgroundColor: slider.buttonBackgroundColor,
 												fontSize: `${slider.buttonFontSize}px`,
 												display: 'inline-block',
-												padding: '10px 20px',
+												padding: '12px 10px',
 												marginTop: '10px',
+												textAlign: 'center',
 											}}>
 												{slider.buttonText}
 											</a>

@@ -28,9 +28,8 @@ add_action( 'init', 'create_block_sk_image_carousel_block_init' );
 // Render the block on the front end
 function render_image_carousel_block( $attributes ) {
 	ob_start();
-
+//print_r($attributes);
 	$sliders = isset( $attributes['sliders'] ) ? $attributes['sliders'] : [];
-	print_r($sliders);
 	?>
 	<div class="swiper mySwiper">
 		<?php if ( ! empty( $sliders ) && is_array( $sliders ) ) : ?>
@@ -64,12 +63,18 @@ function render_image_carousel_block( $attributes ) {
 								<?php endif; ?>
 
 								<?php if ( ! empty( $slider['buttonText'] ) && ! empty( $slider['buttonUrl'] ) ) : ?>
+
 									<a href="<?php echo esc_url( $slider['buttonUrl'] ); ?>"
-									   style="color: <?php echo esc_attr( $slider['buttonTextColor'] ); ?>;
-										   background-color: <?php echo esc_attr( $slider['buttonBackgroundColor'] ); ?>;
-										   font-size: <?php echo esc_attr( $slider['buttonFontSize'] ); ?>px;">
+									   style="background-color: <?php echo esc_attr( $slider['buttonBackgroundColor'] ); ?>;
+									   font-size: <?php echo esc_attr( $slider['buttonFontSize'] ); ?>px;
+									   color: <?php echo esc_attr( $slider['buttonTextColor'] ); ?>;
+										   padding: 12px 10px;
+										   margin-top: 10px;
+										   text-align: center;
+										   ">
 										<?php echo esc_html( $slider['buttonText'] ); ?>
 									</a>
+
 								<?php endif; ?>
 							</div>
 
@@ -94,7 +99,7 @@ function render_image_carousel_block( $attributes ) {
 				spaceBetween: 30,
 				centeredSlides: true,
 				autoplay: {
-					delay: 2500,
+					delay: 5000,
 					disableOnInteraction: false,
 				},
 				pagination: {
@@ -120,7 +125,7 @@ function render_image_carousel_block_editor_assets() {
 
 	// Enqueue Swiper styles
 	wp_enqueue_style('swiper-css', plugin_dir_url(__FILE__).'src/sweeper/sp.css', array(), null);
-	wp_enqueue_style('image-custom-css', plugin_dir_url(__FILE__) . 'build/index.css', array(), $asset['version'], 'all');
+	wp_enqueue_style('image-custom-css', plugin_dir_url(__FILE__) . 'build/style-index.css', array(), $asset['version'], 'all');
 	// Enqueue Swiper script
 	wp_enqueue_script('swiper-js', plugin_dir_url(__FILE__).'src/sweeper/sp.js'  , array('jquery'), null, true);
 
